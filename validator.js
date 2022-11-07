@@ -1,12 +1,12 @@
 const { body, validationResult } = require('express-validator');
 
 const validateMovie = [
-  body("title").isNotNull().isLength({ max: 255 }),
-  body("director").isNotNull().isLength({ max: 255 }),
-  body("lastname").isNotNull().isLength({ max: 255 }),
-  body("year").isNotNull().isLength({ max: 255 }),
-  body("color").isNotNull().isLength({ max: 255 }),
-  body("duration").isNotNull().isLength({ max: 255 }),
+  body("title").isLength({min: 1}).isLength({ max: 255 }),
+  body("director").isLength({min: 1}).isLength({ max: 255 }),
+  body("lastname").isLength({min: 1}).isLength({ max: 255 }),
+  body("year").isLength({min: 1}).isLength({ max: 255 }),
+  body("color").isLength({min: 1}).isLength({ max: 255 }),
+  body("duration").isLength({min: 1}).isLength({ max: 255 }),
   (req, res, next) => {
     const errors = validationResult(req);
 
@@ -19,12 +19,11 @@ const validateMovie = [
 ];
 
 const validateUser = [
-    body("title").isNotNull().isLength({ max: 255 }),
-    body("director").isNotNull().isLength({ max: 255 }),
-    body("lastname").isNotNull().isLength({ max: 255 }),
-    body("year").isNotNull().isLength({ max: 255 }),
-    body("color").isNotNull().isLength({ max: 255 }),
-    body("duration").isNotNull().isLength({ max: 255 }),
+    body("firstname").isLength({min: 1}).isLength({ max: 255 }),
+    body("lastname").isLength({min: 1}).isLength({ max: 255 }),
+    body("email").isEmail(),
+    body("city").isLength({min: 1}).isLength({ max: 255 }),
+    body("language").isLength({min: 1}).isLength({ max: 255 }),
     (req, res, next) => {
       const errors = validationResult(req);
   
