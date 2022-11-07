@@ -1,4 +1,7 @@
 require("dotenv").config();
+const { validateUser } = require("./validator.js");
+const { validateMovie } = require("./validator.js");
+
 
 const express = require("express");
 
@@ -14,10 +17,14 @@ const welcome = (req, res) => {
 app.get("/", welcome);
 
 const userHandler = require("./userHandler");
+const movieHandler = require("./movieHandler");
+
 
 app.get("/api/users", userHandler.getUsers);
 app.get("/api/users/:id", userHandler.getUsersById);
-app.post("/api/users", userHandler.postUser);
+app.post("/api/users",validateUser, userHandler.postUser);
+app.put("api/users/:id", validateUser, userHandler.putUser);
+
 app.listen(port, (err) => {
   if (err) {
     console.error("Something bad happened");
@@ -25,3 +32,7 @@ app.listen(port, (err) => {
     console.log(`Server is listening on ${port}`);
   }
 });
+
+
+app.post("api/movies", validateMovie, movieHandler.postMovie);
+app.put("api/movies/:id", validateMovie, movieHandler.putMovie);
