@@ -48,10 +48,10 @@ const putMovie = (req, res) => {
     const { title, director, year, color, duration } = req.body;
   
     database
-      .query(
-        "INSERT INTO movies(title, director, year, color, duration) VALUES (?, ?, ?, ?, ?)",
-        [title, director, year, color, duration]
-      )
+    .query(
+      "update movies set title = ?, director = ?, year = ?, color = ?, duration = ? where id = ?",
+      [title, director, year, color, duration, id]
+    )
       .then(([result]) => {
         res.location(`/api/movies/${result.insertId}`).sendStatus(201);
       })

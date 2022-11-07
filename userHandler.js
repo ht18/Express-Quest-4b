@@ -48,10 +48,10 @@ const putUser = (req, res) => {
   const { firstname, lastname, email, city, language } = req.body;
 
   database
-    .query(
-      "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
-      [firstname, lastname, email, city, language]
-    )
+  .query(
+    "update users set firstname = ?, lastname = ?, email = ?, city = ?, language = ? where id = ?",
+    [firstname, lastname, email, city, language, id]
+  )
     .then(([result]) => {
       res.location(`/api/users/${result.insertId}`).sendStatus(201);
     })
