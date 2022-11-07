@@ -24,8 +24,11 @@ app.get("/api/users", userHandler.getUsers);
 app.get("/api/users/:id", userHandler.getUsersById);
 app.post("/api/users",validateUser, userHandler.postUser);
 app.put("/api/users/:id", validateUser, userHandler.updateUser);
+app.delete("/api/users/:id", userHandler.deleteUser);
+
 app.post("/api/movies", validateMovie, movieHandler.postMovie);
 app.put("/api/movies/:id", validateMovie, movieHandler.putMovie);
+
 
 app.listen(port, (err) => {
   if (err) {
