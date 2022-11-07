@@ -46,6 +46,7 @@ const postMovie = (req, res) => {
 
 const putMovie = (req, res) => {
     const { title, director, year, color, duration } = req.body;
+    const id = parseInt(req.params.id);
   
     database
     .query(

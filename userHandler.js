@@ -46,6 +46,7 @@ const postUser = (req, res) => {
 
 const putUser = (req, res) => {
   const { firstname, lastname, email, city, language } = req.body;
+  const id = parseInt(req.params.id);
 
   database
   .query(
